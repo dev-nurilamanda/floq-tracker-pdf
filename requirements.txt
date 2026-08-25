@@ -1,0 +1,5 @@
+flask
+requests
+reportlab
+gspread
+google-auth
