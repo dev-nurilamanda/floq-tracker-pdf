@@ -6,7 +6,8 @@ from reportlab.pdfgen import canvas
 
 app = Flask(__name__)
 
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+# Langsung pasang token di sini biar tidak terhalang Vercel Env
+TELEGRAM_TOKEN = "8902273230:AAEcaTTOLYuDGb5mgC4-xKLaI1-43OIi2H0"
 
 def create_valid_pdf(filename):
     c = canvas.Canvas(filename, pagesize=letter)
@@ -44,11 +45,11 @@ def index():
         if text in ["/start", "/pdf"]:
             pdf_path = "/tmp/Laporan_DCA_Floq.pdf"
             
-            # Buat PDF asli
+            # 1. Bikin PDF
             create_valid_pdf(pdf_path)
 
-            # Kirim dokumen PDF ke Telegram
+            # 2. Kirim PDF
             send_telegram_document(chat_id, pdf_path, "✅ Ini laporan PDF kamu, Bos!")
 
     return jsonify({"status": "ok"}), 200
-        
+    
